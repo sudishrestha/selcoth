@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       >
+        // Add exoplayer in your layout(xml) file
+
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/exoplayerview_activity_video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#A6000000"
+            app:use_controller="false"
+            app:player_layout_id="@layout/exo_simple_player_view"
+            app:repeat_toggle_modes="none"
+            app:resize_mode="fill"
+            app:show_timeout="45000"
+            app:surface_type="texture_view" />
+        <!--        app:controller_layout_id="@layout/exo_playback_control_view"-->
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_alignParentTop="true"
+            android:id="@+id/topmenu"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="SUDISH #SUDISHRESTHA"
+                android:background="#99091512"
+                android:padding="2dp"
+                android:id="@+id/mainuser"
+                android:textColor="@color/textColor1"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:padding="6dp"
+                android:id="@+id/close"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/circle_bg"
+                android:src="@drawable/ic_close"
+                app:tint="@android:color/white"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:padding="4dp"
+                android:id="@+id/home"
+                android:background="@drawable/circle_bg"
+                android:layout_toLeftOf="@id/close"
+                android:layout_marginRight="5dp"
+                app:tint="@android:color/white"
+                android:src="@drawable/ic_house"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:id="@+id/profDetail"
+            android:layout_below="@id/topmenu"
+
+            android:background="#99091512"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:padding="2dp"
+                android:background="@drawable/circle_bg"
+                android:id="@+id/profileMain"
+                android:src="@drawable/ic_person"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sudishrestha"
+                android:id="@+id/profusername"
+                android:layout_marginLeft="2dp"
+                android:layout_toRightOf="@+id/profileMain"
+                android:textColor="@color/textColor1"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/msg_bg"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:layout_toRightOf="@id/profusername">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="FOLLOW"
+                    android:id="@+id/followu"
+                    android:textSize="8sp"
+                    android:layout_marginLeft="2dp"
+                    android:textColor="@color/textColor1"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/followu"
+                    android:src="@android:drawable/star_on"
+                    app:tint="@android:color/white"/>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_toRightOf="@+id/profileMain"
+                android:layout_below="@id/profusername">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_eye"
+                    app:tint="@color/colorAccent"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:text="1457"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="12sp"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_follow"
+                    app:tint="@color/colorPrimaryDark"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="25"
+                    android:layout_marginLeft="3dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_below="@id/profDetail"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/viewers"
+            />
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="25dp">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/messages"
+                />
+
+            <RelativeLayout
+                android:layout_below="@id/messages"
+                android:id="@+id/bottom_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp" >
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:id="@+id/sec1"
+                    android:background="@drawable/msg_bg">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="5dp"
+                        android:src="@drawable/ic_message"
+                        android:id="@+id/msgico"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lets Chat"
+                        android:layout_toRightOf="@+id/msgico"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="10dp"
+                        android:textColor="@color/textColor1"
+                        android:layout_centerVertical="true"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:id="@+id/sec2"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/sec1"
+                    android:background="@drawable/circle_bg">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_centerInParent="true"
+                        app:tint="@android:color/white"
+                        android:src="@drawable/ic_scroll"
+                        android:id="@+id/scrollmsg"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:id="@+id/sec3"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/sec2"
+                    android:background="@drawable/circle_bg">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_centerInParent="true"
+                        app:tint="@android:color/white"
+                        android:src="@drawable/ic_irregular"
+                        android:id="@+id/ireg"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:id="@+id/sec4"
+                    android:layout_marginLeft="5dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/circle_bg">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_heart"
+                        android:id="@+id/heart"
+                        />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:id="@+id/sec5"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toLeftOf="@id/sec4"
+                    android:background="@drawable/circle_bg">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_gift"
+                        android:id="@+id/gift"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:id="@+id/sec6"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toLeftOf="@id/sec5"
+                    android:background="@drawable/circle_bg">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_forward"
+                        app:tint="@android:color/white"
+                        android:id="@+id/forward"
+                        />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:id="@+id/sec7"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toLeftOf="@id/sec6"
+                    android:background="@drawable/circle_bg">
+                    <ImageView
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_record"
+                        android:id="@+id/rec"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="REC"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/textColor1"
+                        android:textSize="7sp"
+                        android:layout_toRightOf="@+id/rec"/>
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</LinearLayout>

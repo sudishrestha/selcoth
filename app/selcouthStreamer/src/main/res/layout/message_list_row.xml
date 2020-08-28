@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_margin="5dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/msg_bg">
+<ImageView
+    android:layout_width="25dp"
+    android:layout_height="25dp"
+    android:id="@+id/profile_pic"
+    android:layout_margin="9dp"
+    android:layout_centerVertical="true"
+    android:src="@mipmap/ic_launcher_round"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/username"
+        android:textColor="@android:color/white"
+        android:layout_toRightOf="@id/profile_pic"
+        android:text="Sudish Shrestha"
+        android:textStyle="bold"
+        android:textSize="15sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/messages"
+        android:textColor="@android:color/white"
+        android:text="Nice Cartoon"
+        android:layout_toRightOf="@id/profile_pic"
+        android:layout_below="@id/username"/>
+</RelativeLayout>
