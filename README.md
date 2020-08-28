@@ -16,18 +16,27 @@ Step 2. Add the dependency
     implementation 'com.github.sudishrestha:selcoth:v0.0.1'
 	}
   
-Step 3.  Add permision on manifest for camera
+Step 4.  Add sourceCompatibility and targetCompatibility in your build.gradle
+	  android {
+	...
+	  compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	    }
+	...
+	}
+Step 4.  Add permision on manifest for camera
       
     <uses-permission android:name="android.permission.INTERNET" />
         
-  Step 4. Add the element in the xml file
+Step 5. Add the element in the xml file
   
     <np.com.sudishrestha.selcouthstreamer.streamer
         android:layout_width="match_parent"
         android:id="@+id/mystream"
         android:layout_height="match_parent"/>
    
-   Step 5. Add some code in the activity
+ Step 6. Add some code in the activity
  
 		  public class MainActivity extends AppCompatActivity implements  streamInterface {
 
