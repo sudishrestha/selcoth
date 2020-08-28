@@ -28,27 +28,29 @@ Step 3.  Add permision on manifest for camera
         android:layout_height="match_parent"/>
    
    Step 5. Add some code in the activity
-   
-  public class MainActivity extends AppCompatActivity implements  streamInterface {
-      np.com.sudishrestha.selcouthstreamer.streamer streamer;
-      @Override
-      protected void onCreate(Bundle savedInstanceState) {
-          super.onCreate(savedInstanceState);
-          getSupportActionBar().hide();
-          this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+ 
+		  public class MainActivity extends AppCompatActivity implements  streamInterface {
 
-          setContentView(R.layout.activity_main);
-          streamer = findViewById(R.id.mystream);
-          streamer.setMstreamInterface(this);
+		      np.com.sudishrestha.selcouthstreamer.streamer streamer;
+
+		      @Override
+		      protected void onCreate(Bundle savedInstanceState) {
+			  super.onCreate(savedInstanceState);
+			  getSupportActionBar().hide();
+			  this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+			  setContentView(R.layout.activity_main);
+			  streamer = findViewById(R.id.mystream);
+			  streamer.setMstreamInterface(this);
 
 
-      }
+		      }
 
-      @Override
-      public void onClick(String username, String type, String info) {
-          Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
-      }
-  }
+		      @Override
+		      public void onClick(String username, String type, String info) {
+			  Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
+		      }
+		  }
   
   If any problem with the running of code, check for the permission in app
    
