@@ -17,14 +17,16 @@ Step 2. Add the dependency
 	}
   
 Step 4.  Add sourceCompatibility and targetCompatibility in your build.gradle
-	  android {
-	...
-	  compileOptions {
-		sourceCompatibility JavaVersion.VERSION_1_8
-		targetCompatibility JavaVersion.VERSION_1_8
-	    }
-	...
-	}
+
+			  android {
+			...
+			  compileOptions {
+				sourceCompatibility JavaVersion.VERSION_1_8
+				targetCompatibility JavaVersion.VERSION_1_8
+			    }
+			...
+			}
+			
 Step 4.  Add permision on manifest for camera
       
     <uses-permission android:name="android.permission.INTERNET" />
