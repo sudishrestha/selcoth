@@ -5,8 +5,10 @@ import android.content.Context;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,6 +29,7 @@ import java.util.List;
 
 import np.com.sudishrestha.selcouthstreamer.helper.messageAdapter;
 import np.com.sudishrestha.selcouthstreamer.helper.viewerAdapter;
+import np.com.sudishrestha.selcouthstreamer.interfaces.streamInterface;
 import np.com.sudishrestha.selcouthstreamer.model.messages;
 
 public class streamer extends LinearLayout {
@@ -34,60 +37,90 @@ public class streamer extends LinearLayout {
     private List<messages> messagesList = new ArrayList<>();
     private List<messages> viewerlist = new ArrayList<>();
 
-    private RecyclerView recyclerView,rvViewer;
-    RelativeLayout topmenu,profDetail,bottom_section;
+    private RecyclerView recyclerView, rvViewer;
+    RelativeLayout topmenu, profDetail, bottom_section;
     private messageAdapter mAdapter;
     viewerAdapter radapter;
     PlayerView pvMain;
     boolean hideElement;
+    streamInterface mstreamInterface;
+    TextView mainUser;
+    ImageView close, home;
 
-    private void initialize(Context context){
-       View view =  inflate(context, R.layout.selcouth_view, this);
+    private void initialize(Context context) {
+        View view = inflate(context, R.layout.selcouth_view, this);
         pvMain = findViewById(R.id.exoplayerview_activity_video);
         pvMain = findViewById(R.id.exoplayerview_activity_video);
         topmenu = findViewById(R.id.topmenu);
         profDetail = findViewById(R.id.profDetail);
         bottom_section = findViewById(R.id.bottom_section);
 
+
         String CONTENT_URL = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
         int playerID = R.id.exoplayerview_activity_video;
         startPlayingVideo(context, CONTENT_URL, playerID);
         recyclerView = (RecyclerView) findViewById(R.id.messages);
         rvViewer = (RecyclerView) findViewById(R.id.viewers);
+        close = (ImageView) findViewById(R.id.close);
+        home = (ImageView) findViewById(R.id.home);
+
+        mainUser = (TextView) findViewById(R.id.mainuser);
+        profDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mstreamInterface.onClick("sudishrestha", "follow", "Follow the streamer");
+            }
+        });
+        mainUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mstreamInterface.onClick("sudishrestha", "mainprofile", "View streamer profile");
+            }
+        });
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mstreamInterface.onClick("sudishrestha", "close", "Close The Video");
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mstreamInterface.onClick("sudishrestha", "home", "Go to Home Page");
+            }
+        });
 
         pvMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (hideElement)
-                {
+                if (hideElement) {
                     recyclerView.setVisibility(View.VISIBLE);
                     rvViewer.setVisibility(View.VISIBLE);
                     topmenu.setVisibility(View.VISIBLE);
                     profDetail.setVisibility(View.VISIBLE);
                     bottom_section.setVisibility(View.VISIBLE);
                     hideElement = false;
-                }
-                else
-                {
+                } else {
                     recyclerView.setVisibility(View.GONE);
                     rvViewer.setVisibility(View.GONE);
                     topmenu.setVisibility(View.GONE);
                     profDetail.setVisibility(View.GONE);
                     bottom_section.setVisibility(View.GONE);
-                    hideElement= true;
+                    hideElement = true;
                 }
             }
         });
-        mAdapter = new messageAdapter(messagesList,true,context);
+        mAdapter = new messageAdapter(messagesList, true, context,mstreamInterface);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
 
-
-        radapter = new viewerAdapter(viewerlist,false,context);
-        RecyclerView.LayoutManager mLayoutManagers = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false);
+        radapter = new viewerAdapter(viewerlist, false, context,mstreamInterface);
+        RecyclerView.LayoutManager mLayoutManagers = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         rvViewer.setLayoutManager(mLayoutManagers);
         rvViewer.setItemAnimator(new DefaultItemAnimator());
         rvViewer.setAdapter(radapter);
@@ -95,43 +128,50 @@ public class streamer extends LinearLayout {
 
         prepareData();
     }
+
     public streamer(Context context) {
         super(context);
         initialize(context);
+    }
+
+    public void setMstreamInterface(streamInterface mstreamInterface) {
+        this.mstreamInterface = mstreamInterface;
     }
 
     public streamer(Context context, AttributeSet attrs) {
         super(context, attrs);
         initialize(context);
     }
+
     private void prepareData() {
-        messages messages = new messages("Mad Max: Fury Road", "Action & Adventure");
+        messages messages = new messages("Rudy", "Nice");
         messagesList.add(messages);
 
-        messages = new messages("Mad Max: Fury Road", "Action & Adventure");
+        messages = new messages("Franky", "Good");
         messagesList.add(messages);
-        messages = new messages("Mad Max: Fury Road", "Action & Adventure");
+        messages = new messages("Timo", "Excellent");
         messagesList.add(messages);
         messagesList.add(messages);
 //        viewerlist = messagesList;
 
 
-        messages viewers = new messages("Mad Max: Fury Road", "Action & Adventure");
+        messages viewers = new messages("Rudy", "Nice");
         viewerlist.add(viewers);
 
-        viewers = new messages("Mad Max: Fury Road", "Action & Adventure");
+        viewers = new messages("Franky", "Good");
         viewerlist.add(messages);
-        viewers = new messages("Mad Max: Fury Road", "Action & Adventure");
+        viewers = new messages("Timo", "Excellent");
         viewerlist.add(messages);
-        viewers = new messages("Mad Max: Fury Road", "Action & Adventure");
+        viewers = new messages("Thiago", "Marvelous");
         viewerlist.add(messages);
-        viewers = new messages("Mad Max: Fury Road", "Action & Adventure");
+        viewers = new messages("Leon", "Awesome");
         viewerlist.add(messages);
 
 
         radapter.notifyDataSetChanged();
         mAdapter.notifyDataSetChanged();
     }
+
     private void startPlayingVideo(Context ctx, String CONTENT_URL, int playerID) {
 
         //BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();

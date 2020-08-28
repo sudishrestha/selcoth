@@ -8,5 +8,6 @@
     android:orientation="vertical">
     <np.com.sudishrestha.selcouthstreamer.streamer
         android:layout_width="match_parent"
+        android:id="@+id/mystream"
         android:layout_height="match_parent"/>
 </RelativeLayout>

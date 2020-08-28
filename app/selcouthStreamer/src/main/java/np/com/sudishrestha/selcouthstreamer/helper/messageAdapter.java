@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import np.com.sudishrestha.selcouthstreamer.R;
+import np.com.sudishrestha.selcouthstreamer.interfaces.streamInterface;
 import np.com.sudishrestha.selcouthstreamer.model.messages;
 
 public class messageAdapter  extends RecyclerView.Adapter<messageAdapter.MyViewHolder> {
@@ -20,6 +21,7 @@ public class messageAdapter  extends RecyclerView.Adapter<messageAdapter.MyViewH
     private List<messages> messagesList;
 Boolean visible = false;
     Context mContext;
+  streamInterface mstreamInterface;
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView profile_pic;
         public MyViewHolder(View view) {
@@ -29,10 +31,11 @@ Boolean visible = false;
     }
 
 
-    public messageAdapter(List<messages> messagesList,Boolean visible, Context mContext) {
+    public messageAdapter(List<messages> messagesList,Boolean visible, Context mContext, streamInterface mstreamInterface) {
         this.messagesList = messagesList;
         this.visible=visible;
         this.mContext = mContext;
+        this.mstreamInterface = mstreamInterface;
     }
 
     @Override
@@ -44,7 +47,8 @@ Boolean visible = false;
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
+        final messages messages = messagesList.get(position);
         switch (position) {
             case 0:
                 Glide.with(mContext).load("https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=500").circleCrop().into(holder.profile_pic);
@@ -64,6 +68,15 @@ Boolean visible = false;
 
 
         }
+//        holder.profile_pic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                mstreamInterface.onClick(messages.getUsername(), "view", "View profile of user at position " + position);
+//            }
+//        });
+//
+
 
     }
 

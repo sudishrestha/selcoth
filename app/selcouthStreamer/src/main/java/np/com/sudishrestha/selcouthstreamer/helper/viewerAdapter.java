@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import np.com.sudishrestha.selcouthstreamer.R;
+import np.com.sudishrestha.selcouthstreamer.interfaces.streamInterface;
 import np.com.sudishrestha.selcouthstreamer.model.messages;
 
 public class viewerAdapter extends RecyclerView.Adapter<viewerAdapter.MyViewHolder> {
@@ -21,6 +22,7 @@ public class viewerAdapter extends RecyclerView.Adapter<viewerAdapter.MyViewHold
     private List<messages> messagesList;
     Boolean visible = false;
     Context mContext;
+    streamInterface mstreamInterface;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -36,10 +38,11 @@ public class viewerAdapter extends RecyclerView.Adapter<viewerAdapter.MyViewHold
     }
 
 
-    public viewerAdapter(List<messages> messagesList, Boolean visible, Context mContext) {
+    public viewerAdapter(List<messages> messagesList, Boolean visible, Context mContext, streamInterface mstreamInterface) {
         this.messagesList = messagesList;
         this.visible = visible;
         this.mContext = mContext;
+        this.mstreamInterface = mstreamInterface;
     }
 
     @Override
@@ -51,16 +54,13 @@ public class viewerAdapter extends RecyclerView.Adapter<viewerAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(viewerAdapter.MyViewHolder holder, int position) {
-
-if (position < 4)
-{
-    holder.moreText.setVisibility(View.GONE);
-}
-else
-{
-    holder.moreText.setVisibility(View.VISIBLE);
-}
+    public void onBindViewHolder(viewerAdapter.MyViewHolder holder, final int position) {
+        final messages messages = messagesList.get(position);
+        if (position < 4) {
+            holder.moreText.setVisibility(View.GONE);
+        } else {
+            holder.moreText.setVisibility(View.VISIBLE);
+        }
         switch (position) {
             case 0:
                 Glide.with(mContext).load("https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=500").circleCrop().into(holder.profile_pic);
@@ -86,6 +86,13 @@ else
 
 
         }
+
+//        holder.profile_pic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                mstreamInterface.onClick(messages.getUsername(), "view", "View profile of user at position " + position);
+//            }
+//        });
     }
 
     @Override
